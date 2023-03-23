@@ -8,6 +8,7 @@ const XhamsterBase = "https://xhamster18.desi/";
 const HanimeBase = "https://hanime.tv";
 const TiavaBase = "https://www.tiava.com/";
 
+// Gets Top model 
 export const GetPopularPornstar = async ({ list = [], page = 1 }) => {
   try {
     const res = await axios.get(XhamsterPopularPornstarsUrl + `/${page}`);
@@ -21,7 +22,7 @@ export const GetPopularPornstar = async ({ list = [], page = 1 }) => {
           PornStarRank: $(el).find("a > span").text().replace(/\s\s+/g, ""),
           PornStarName: $(el)
             .find(".pornstar-thumb-container__info > div > a")
-            .text(),
+            .text().replace(/\s\s+/g, ""),
           PornStarViews: $(el)
             .find(
               ".pornstar-thumb-container__info > .pornstar-thumb-container__info-videos > div"
@@ -44,6 +45,7 @@ export const GetPopularPornstar = async ({ list = [], page = 1 }) => {
   }
 };
 
+// Get Popular videos from respective website
 export const GetPopUlarVideosOkXXX = async ({ list = [], page = 1 }) => {
   try {
     const res = await axios.get(OkXXXPopularBase + `${page}/`);
@@ -82,6 +84,7 @@ export const GetTrendingVideosOkXXX = async ({ list = [], page = 1 }) => {
   }
 };
 
+// search for videos by keyword
 export const GetbyKeyword = async ({ list = [], page = 1, keyw }) => {
   try {
     if (!keyw)
@@ -105,6 +108,7 @@ export const GetbyKeyword = async ({ list = [], page = 1, keyw }) => {
   }
 };
 
+// get hentai (totally weird)
 export const GetHanimeWeeklyTop = async ({ list = [] }) => {
   try {
     const res = await axios.get(HanimeBase + "/browse/trending");
@@ -152,6 +156,7 @@ export const GetHanimeWeeklyTop = async ({ list = [] }) => {
 //   }
 // };
 
+// get weekly top videos by hamster
 export const GetWeeklyHamster = async ({ list = [], page = 1 }) => {
   try {
     const res = await axios.get(`${XhamsterBase}best/weekly/${page}`);
@@ -183,6 +188,7 @@ export const GetWeeklyHamster = async ({ list = [], page = 1 }) => {
   }
 };
 
+// cant decide? here a random vid
 export const GetRandom = async ({ list = [] }) => {
   try {
     const res = await axios.get(OkXXXPopularBase);
