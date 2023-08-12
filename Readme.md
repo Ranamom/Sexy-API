@@ -145,7 +145,7 @@ axios.get('/gambit/random')
 
 ### Get Best Weekly Videos from Xhamster
 ````js
-axios.get('/gambit/weeklybest')
+axios.get('/gambit/weeklybest/?page=1')
 .then(response => response.data)
 ````
 

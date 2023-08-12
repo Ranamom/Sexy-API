@@ -3,8 +3,8 @@ import axios from "axios";
 
 const OkXXXPopularBase = "https://ok.xxx/popular/";
 const OkxxxBase = "https://ok.xxx";
-const XhamsterPopularPornstarsUrl = "https://xhamster18.desi/pornstars"; //use .com if youre outside india
-const XhamsterBase = "https://xhamster18.desi/";
+const XhamsterPopularPornstarsUrl = "https://xhamster.desi/pornstars"; //use .com if youre outside india
+const XhamsterBase = "https://xhamster.desi/";
 const HanimeBase = "https://hanime.tv";
 const TiavaBase = "https://www.tiava.com/";
 
@@ -50,7 +50,7 @@ export const GetPopUlarVideosOkXXX = async ({ list = [], page = 1 }) => {
   try {
     const res = await axios.get(OkXXXPopularBase + `${page}/`);
     const $ = load(res.data);
-    const cherdata = $("#list_videos_common_videos_list > .thumb-bl ").each(
+    const cherdata = $("#custom_list_videos_custom_common_videos_list_items > .thumb-bl ").each(
       (div, el) => {
         list.push({
           VidTitle: $(el).find("a").attr("title"),
@@ -59,6 +59,7 @@ export const GetPopUlarVideosOkXXX = async ({ list = [], page = 1 }) => {
         });
       }
     );
+    // console.log(list)
     return list;
   } catch (error) {
     console.log(error.message);
@@ -69,7 +70,7 @@ export const GetTrendingVideosOkXXX = async ({ list = [], page = 1 }) => {
   try {
     const res = await axios.get(OkxxxBase + `/trending/${page}/`);
     const $ = load(res.data);
-    const cherdata = $("#list_videos_common_videos_list > .thumb-bl ").each(
+    const cherdata = $("#custom_list_videos_custom_common_videos_list_items > .thumb-bl ").each(
       (div, el) => {
         list.push({
           VidTitle: $(el).find("a").attr("title"),
@@ -78,6 +79,7 @@ export const GetTrendingVideosOkXXX = async ({ list = [], page = 1 }) => {
         });
       }
     );
+    console.log(list)
     return list;
   } catch (error) {
     console.log(error.message);
@@ -94,7 +96,7 @@ export const GetbyKeyword = async ({ list = [], page = 1, keyw }) => {
     const res = await axios.get(OkxxxBase + `/search/${keyw}/${page}/`);
     const $ = load(res.data);
     const cherdata = $(
-      "#list_videos_videos_list_search_result > .thumb-bl "
+      "#custom_list_videos_custom_videos_list_search_result_items> .thumb-bl "
     ).each((div, el) => {
       list.push({
         VidTitle: $(el).find("a").attr("title"),
@@ -108,30 +110,30 @@ export const GetbyKeyword = async ({ list = [], page = 1, keyw }) => {
   }
 };
 
-// get hentai (totally weird)
-export const GetHanimeWeeklyTop = async ({ list = [] }) => {
-  try {
-    const res = await axios.get(HanimeBase + "/browse/trending");
-    const $ = load(res.data);
-    const cherdata = $(
-      ".layout.results.flex.row > .flex.xs12.justify-center.align-center.wrap > .elevation-3.mb-3.hvc.item.card"
-    ).each((a, el) => {
-      list.push({
-        HanimeName: $(el).find("a").attr("alt"),
-        HanimeRank: $(el)
-          .find(
-            "a > div > div.card__title > div.hvc__content.flex.column.justify-center.align-center > div.hvc__slot_data"
-          )
-          .text()
-          .replace(/\s\s+/g, ""),
-        WatchHanime: `${HanimeBase}${$(el).find("a").attr("href")}`,
-      });
-    });
-    return list;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// // get hentai (totally weird) removing hanime and shit because weebs are weird
+// export const GetHanimeWeeklyTop = async ({ list = [] }) => {
+//   try {
+//     const res = await axios.get(HanimeBase + "/browse/trending");
+//     const $ = load(res.data);
+//     const cherdata = $(
+//       ".layout.results.flex.row > .flex.xs12.justify-center.align-center.wrap > .elevation-3.mb-3.hvc.item.card"
+//     ).each((a, el) => {
+//       list.push({
+//         HanimeName: $(el).find("a").attr("alt"),
+//         HanimeRank: $(el)
+//           .find(
+//             "a > div > div.card__title > div.hvc__content.flex.column.justify-center.align-center > div.hvc__slot_data"
+//           )
+//           .text()
+//           .replace(/\s\s+/g, ""),
+//         WatchHanime: `${HanimeBase}${$(el).find("a").attr("href")}`,
+//       });
+//     });
+//     return list;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // export const GetPornstarsBykeyword = async ({ keyw, list = [] }) => {
 //   try {
@@ -193,7 +195,7 @@ export const GetRandom = async ({ list = [] }) => {
   try {
     const res = await axios.get(OkXXXPopularBase);
     const $ = load(res.data);
-    const cherdata = $("#list_videos_common_videos_list > .thumb-bl ").each(
+    const cherdata = $("#custom_list_videos_custom_common_videos_list_items > .thumb-bl ").each(
       (div, el) => {
         list.push({
           VidTitle: $(el).find("a").attr("title"),

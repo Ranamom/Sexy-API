@@ -6,7 +6,7 @@ import {
   GetPopularPornstar,
   GetPopUlarVideosOkXXX,
   GetbyKeyword,
-  GetHanimeWeeklyTop,
+  // GetHanimeWeeklyTop, (weirdos)
   // GetPornstarsBykeyword,
   GetWeeklyHamster,
   GetRandom,
@@ -46,10 +46,10 @@ app.get("/gambit/search", async (req, res) => {
   res.send(data);
 });
 
-app.get("/gambit/hanime", async (req, res) => {
-  const data = await GetHanimeWeeklyTop({});
-  res.send(data);
-});
+// app.get("/gambit/hanime", async (req, res) => {
+//   const data = await GetHanimeWeeklyTop({});
+//   res.send(data);
+// });
 
 // app.get("/gambit/tiavapornstars", async (req, res) => {
 //   const keyw = req.query.keyw
