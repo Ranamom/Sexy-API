@@ -10,6 +10,7 @@ import {
   // GetPornstarsBykeyword,
   GetWeeklyHamster,
   GetRandom,
+  GetPornHatPopular,
 } from "./scraper/routes.js";
 
 const app = express()
@@ -67,9 +68,13 @@ app.get("/gambit/random", async (req, res) => {
   const data = await GetRandom({});
   res.send(data);
 });
-
+app.get("/gambit/pornhatpopular", async (req, res) => {
+  const page = req.query.page;
+  const data = await GetPornHatPopular({}, page)
+  res.send(data);
+})
 app.get("/", async (req, res) => {
-  res.sendFile( "index.html", { root: "views" });
+  res.sendFile("index.html", { root: "views" });
 });
 
 app.listen(port, () => {

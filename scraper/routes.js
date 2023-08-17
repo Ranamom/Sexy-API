@@ -7,7 +7,7 @@ const XhamsterPopularPornstarsUrl = "https://xhamster.desi/pornstars"; //use .co
 const XhamsterBase = "https://xhamster.desi/";
 const HanimeBase = "https://hanime.tv";
 const TiavaBase = "https://www.tiava.com/";
-
+const PornHatBase = "https://www.pornhat.one/"
 // Gets Top model 
 export const GetPopularPornstar = async ({ list = [], page = 1 }) => {
   try {
@@ -210,3 +210,21 @@ export const GetRandom = async ({ list = [] }) => {
     console.log(error.message);
   }
 };
+
+export const GetPornHatPopular = async ({ list = [] }, page = 1) => {
+  try {
+    console.log(page)
+    const res = await axios.get(`${PornHatBase}popular/${page}/`)
+    const $ = load(res.data);
+    const cherdata = $("#list_videos_common_videos_list_items > .thumb-bl-video").each((div, el) => {
+      list.push({
+        VidTitle: $(el).find("a").attr("title"),
+        VidWatch: PornHatBase + $(el).find("a ").attr("href"),
+        VidThumb: "https:" + $(el).find("a > img").attr("data-original"),
+      });
+    })
+    return list;
+  } catch (error) {
+    console.log(error.message);
+  }
+}

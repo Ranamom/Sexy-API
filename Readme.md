@@ -12,14 +12,16 @@
       - [output](#output)
     - [Get Popular Videos From Ok.xxx](#get-popular-videos-from-okxxx)
       - [output](#output-1)
-    - [Get Trending Videos From Ok.xxx](#get-trending-videos-from-okxxx)
+    - [Get Popular Videos From PornHat.one](#get-popular-videos-from-pornhatone)
       - [output](#output-2)
-    - [Get Videos By Keyword](#get-videos-by-keyword)
+    - [Get Trending Videos From Ok.xxx](#get-trending-videos-from-okxxx)
       - [output](#output-3)
-    - [Get Hanime Weekly Top](#get-hanime-weekly-top)
+    - [Get Videos By Keyword](#get-videos-by-keyword)
       - [output](#output-4)
+    - [Get Hanime Weekly Top (Removed)](#get-hanime-weekly-top-removed)
+      - [output](#output-5)
     - [Get Random video](#get-random-video)
-        - [output](#output-5)
+        - [output](#output-6)
     - [Get Best Weekly Videos from Xhamster](#get-best-weekly-videos-from-xhamster)
 ## Installation 
 ```
@@ -70,6 +72,28 @@ axios.get('/gambit/popularxxx/?page=1')
 
   {....}
 ```
+
+
+### Get Popular Videos From PornHat.one
+
+```js
+axios.get('/gambit/popularpornhat/?page=1')
+.then(response => response.data)
+
+```
+#### output 
+
+```json
+{
+    "VidTitle": "Title response from api",
+    "VidWatch": "Watch Link response from api",
+    "VidThumb": "Thumbnail response from api"
+  },
+
+  {....}
+```
+
+
 ### Get Trending Videos From Ok.xxx
 
 ```js
@@ -107,7 +131,7 @@ axios.get('/gambit/search/?page=1&keyw={keyword}')
   {....}
 ```
 
-### Get Hanime Weekly Top
+### Get Hanime Weekly Top (Removed)
 
 ````js
 axios.get('/gambit/hanime')
@@ -159,6 +183,5 @@ axios.get('/gambit/weeklybest/?page=1')
     "VidRating": "94%"
   },
 ]
-````
-  | New Endpoints coming soon |
-  | ------------------------- |
+
+
